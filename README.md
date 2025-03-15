@@ -24,3 +24,18 @@ Install the required libraries:
 
 ```bash
 pip install numpy pandas seaborn matplotlib scikit-learn
+```
+
+## Algorithm
+1. **Feature Engineering:**
+   - **Bucketing Ratings:** Convert continuous `average_rating` values into buckets (e.g., "between 0 and 1", "between 1 and 2", etc.).
+   - **Encoding:** One-hot encode the bucketed ratings and `language_code`.
+
+2. **Feature Scaling:**
+   - Normalize the combined features (dummy variables, `average_rating`, and `ratings_count`) using `MinMaxScaler` so that all features contribute equally.
+
+3. **Model Building:**
+   - Train a Nearest Neighbors model (6 neighbors using the `ball_tree` algorithm) on the scaled features to find similar books.
+
+4. **Recommendation Function:**
+   - The `BookRecommender(book_name)` function finds the index of the input book, retrieves its nearest neighbors, and returns a list of similar book titles.
